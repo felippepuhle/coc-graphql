@@ -1,0 +1,29 @@
+{
+  "name": "coc-graphql",
+  "version": "0.0.1",
+  "description": "GraphQL Language Service extension for coc.nvim",
+  "main": "lib/index.js",
+  "repository": "https://github.com/felippepuhle/coc-graphql",
+  "author": "felippepuhle",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rm -rf lib",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "engines": {
+    "coc": "^0.0.72"
+  },
+  "devDependencies": {
+    "coc.nvim": "^0.0.77",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "graphql": "^15.3.0",
+    "graphql-language-service-server": "^2.4.0"
+  }
+}

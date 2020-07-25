@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "outDir": "lib",
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "lib": ["es2018"],
+    "plugins": []
+  },
+  "include": ["src"],
+  "exclude": []
+}
