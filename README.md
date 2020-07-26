@@ -13,6 +13,15 @@
    :CocInstall coc-graphql
    ```
 
+3. Add a valid [graphql-config](https://github.com/kamilkisiela/graphql-config) file in the project root.
+
+
+## Configuration options
+
+- `graphql.debug` - (default: `false`)
+- `graphql.filetypes` - (default: `['graphql', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'reason']`)
+- `graphql.watcherPattern` - (default: `"**/*.{graphql,gql,js,jsx,ts,tsx,re}"`)
+
 ## License
 
 MIT

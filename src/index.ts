@@ -8,11 +8,15 @@ import {
   workspace,
 } from 'coc.nvim'
 
-const EXTENSION_ID = 'coc-graphql'
-const EXTENSION_NAME = 'graphql'
+const EXTENSION_ID = 'graphql'
 
 export async function activate(context: ExtensionContext): Promise<void> {
   const { subscriptions } = context
+
+  const config = workspace.getConfiguration(EXTENSION_ID)
+  const debug: boolean = config.get('debug')
+  const filetypes: string[] = config.get('filetypes')
+  const watcherPattern: string = config.get('watcherPattern')
 
   const serverModule = context.asAbsolutePath('./lib/server.js')
 
@@ -24,31 +28,29 @@ export async function activate(context: ExtensionContext): Promise<void> {
     debug: {
       module: serverModule,
       transport: TransportKind.ipc,
+      options: {
+        execArgv: ['--nolazy', '--inspect=localhost:6009'],
+      },
     },
   }
 
   let clientOptions: LanguageClientOptions = {
-    documentSelector: [
-      { scheme: 'file', language: 'graphql' },
-      { scheme: 'file', language: 'javascript' },
-      { scheme: 'file', language: 'javascriptreact' },
-      { scheme: 'file', language: 'typescript' },
-      { scheme: 'file', language: 'typescriptreact' },
-    ],
+    documentSelector: filetypes.map((filetype) => ({
+      language: filetype,
+      scheme: 'file',
+    })),
     synchronize: {
-      fileEvents: workspace.createFileSystemWatcher(
-        '**/*.{graphql,gql,js,jsx,ts,tsx}'
-      ),
+      fileEvents: workspace.createFileSystemWatcher(watcherPattern),
     },
-    outputChannel: workspace.createOutputChannel(EXTENSION_NAME),
-    outputChannelName: EXTENSION_NAME,
+    outputChannel: workspace.createOutputChannel(EXTENSION_ID),
+    outputChannelName: EXTENSION_ID,
   }
 
   let client = new LanguageClient(
     EXTENSION_ID,
-    EXTENSION_NAME,
     serverOptions,
-    clientOptions
+    clientOptions,
+    debug
   )
 
   subscriptions.push(services.registLanguageClient(client))

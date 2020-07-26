@@ -14,7 +14,40 @@
     "prettier": "prettier --write '(server|src)/**/*.ts'"
   },
   "engines": {
-    "coc": "^0.0.72"
+    "coc": "^0.0.77"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "GraphQL",
+      "properties": {
+        "graphql.debug": {
+          "type": "boolean",
+          "default": false
+        },
+        "graphql.filetypes": {
+          "type": "array",
+          "default": [
+            "graphql",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "reason"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "graphql.watcherPattern": {
+          "type": "string",
+          "default": "**/*.{graphql,gql,js,jsx,ts,tsx,re}"
+        }
+      }
+    }
   },
   "devDependencies": {
     "coc.nvim": "^0.0.77",
