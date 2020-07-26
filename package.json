@@ -10,7 +10,8 @@
   "scripts": {
     "clean": "rm -rf lib",
     "watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "prettier": "prettier --write '(server|src)/**/*.ts'"
   },
   "engines": {
     "coc": "^0.0.72"
@@ -24,6 +25,7 @@
   },
   "dependencies": {
     "graphql": "^15.3.0",
-    "graphql-language-service-server": "^2.4.0"
+    "graphql-language-service-server": "^2.4.0",
+    "prettier": "^2.0.5"
   }
 }

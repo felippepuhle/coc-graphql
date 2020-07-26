@@ -1,11 +1,13 @@
 import { startServer } from 'graphql-language-service-server'
 
-(async () => {
+const init = async () => {
   try {
     await startServer({
       method: 'node',
-    });
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-})();
+}
+
+init()

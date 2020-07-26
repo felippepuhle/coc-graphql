@@ -1,4 +1,12 @@
-import { ExtensionContext, LanguageClient, ServerOptions, LanguageClientOptions, TransportKind, services, workspace } from 'coc.nvim'
+import {
+  ExtensionContext,
+  LanguageClient,
+  ServerOptions,
+  LanguageClientOptions,
+  TransportKind,
+  services,
+  workspace,
+} from 'coc.nvim'
 
 const EXTENSION_ID = 'coc-graphql'
 const EXTENSION_NAME = 'graphql'
@@ -11,12 +19,12 @@ export async function activate(context: ExtensionContext): Promise<void> {
   let serverOptions: ServerOptions = {
     run: {
       module: serverModule,
-      transport: TransportKind.ipc
+      transport: TransportKind.ipc,
     },
     debug: {
       module: serverModule,
-      transport: TransportKind.ipc
-    }
+      transport: TransportKind.ipc,
+    },
   }
 
   let clientOptions: LanguageClientOptions = {
@@ -25,28 +33,23 @@ export async function activate(context: ExtensionContext): Promise<void> {
       { scheme: 'file', language: 'javascript' },
       { scheme: 'file', language: 'javascriptreact' },
       { scheme: 'file', language: 'typescript' },
-      { scheme: 'file', language: 'typescriptreact' }
+      { scheme: 'file', language: 'typescriptreact' },
     ],
     synchronize: {
       fileEvents: workspace.createFileSystemWatcher(
         '**/*.{graphql,gql,js,jsx,ts,tsx}'
-      )
+      ),
     },
-    outputChannel: workspace.createOutputChannel(
-      EXTENSION_NAME
-    ),
-    outputChannelName: EXTENSION_NAME
-  };
-
+    outputChannel: workspace.createOutputChannel(EXTENSION_NAME),
+    outputChannelName: EXTENSION_NAME,
+  }
 
   let client = new LanguageClient(
     EXTENSION_ID,
     EXTENSION_NAME,
     serverOptions,
-    clientOptions,
+    clientOptions
   )
 
-  subscriptions.push(
-    services.registLanguageClient(client)
-  )
+  subscriptions.push(services.registLanguageClient(client))
 }
