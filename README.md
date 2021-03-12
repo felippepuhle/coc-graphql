@@ -2,6 +2,9 @@
 
 [GraphQL Language Service](https://github.com/graphql/graphiql) extension for [coc.nvim](https://github.com/neoclide/coc.nvim).
 
+## Deprecation warning
+
+Package not needed, please use the LSP directly via [CoC configuration](https://github.com/neoclide/coc.nvim/wiki/Language-servers\#graphql)
 
 ## Install
 
